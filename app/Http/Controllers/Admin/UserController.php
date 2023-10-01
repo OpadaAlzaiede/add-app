@@ -14,7 +14,7 @@ class UserController extends Controller
 
         $user->activate();
 
-        return redirect()->back()->with('user_activation_success', config('user_activation_success'));
+        return redirect()->back()->with('user_activation_success', config('constants.messages.users.user_activation_success'));
     }
 
     public function deActivate(Request $request) {
@@ -23,6 +23,6 @@ class UserController extends Controller
 
         $user->deActivate();
 
-        return redirect()->back()->with('user_deactivation_success', config('user_activation_success'));
+        return redirect()->back()->with('user_deactivation_success', config('constants.messages.users.user_deactivation_success'));
     }
 }

@@ -4,6 +4,12 @@
 
 
 @section('content')
+    @if(session()->has('user_activation_success'))
+        <p class="text-info">{{ session()->get('user_activation_success')}}</p>
+    @endif
+    @if(session()->has('user_deactivation_success'))
+        <p class="text-danger">{{ session()->get('user_deactivation_success')}}</p>
+    @endif
 
     <table class="table">
         <thead>

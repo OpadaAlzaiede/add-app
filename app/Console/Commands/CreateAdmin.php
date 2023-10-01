@@ -45,7 +45,7 @@ class CreateAdmin extends Command
         $password = Hash::make($this->ask('Please provide a valid password'));
 
         $admin = User::create(['name' => $name, 'email' => $email, 'password' => $password]);
-
+        $admin->activate();
 
         $admin->assignRole(Role::getAdminRole());
         $this->info("Admin has been successfully created!");
