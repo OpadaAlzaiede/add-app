@@ -15,11 +15,17 @@
           @csrf
 
           <div class="form-outline mb-4">
+              @if($errors->has('email'))
+                  <div class="text-danger">{{ $errors->first('email') }}</div>
+              @endif
               <label class="form-label" for="email">Email address</label>
               <input value= "{{old('email')}}" type="email" id="email" name="email" class="form-control" required/>
           </div>
 
           <div class="form-outline mb-4">
+              @if($errors->has('password'))
+                  <div class="text-danger">{{ $errors->first('password') }}</div>
+              @endif
               <label class="form-label" for="password">Password</label>
               <input value="{{old('password')}}" type="password" id="password" name="password" class="form-control" required/>
           </div>
