@@ -37,9 +37,7 @@ class AuthController extends Controller
 
         \session()->flash('login_success', \config('constants.messages.auth.login_success'));
 
-        $user = Auth::user();
-
-        if($user->hasRole(Role::getAdminRole())) {
+        if(Auth::user()->hasRole(Role::getAdminRole())) {
 
             return redirect()->route('admin.dashboard');
         }

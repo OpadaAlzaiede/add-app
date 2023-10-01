@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -60,5 +61,30 @@ class User extends Authenticatable
     public function hasRole($roleName) {
 
         return $this->roles()->where('name', $roleName)->exists();
+    }
+
+    public function isActivated() {
+
+        return $this->is_activated === 1;
+    }
+
+    public function activate() {
+
+        $this->is_activated = 1;
+        $this->save();
+    }
+
+    public function deActivate() {
+
+        $this->is_activated = 0;
+        $this->save();
+    }
+
+    public function scopeUsersOnly(Builder $query) {
+
+        return $query->whereHas('roles', function($roleQuery) {
+
+            $roleQuery->where('name', Role::getUserRole());
+        });
     }
 }
