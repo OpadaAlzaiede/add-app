@@ -39,8 +39,8 @@ class RoleSeeder extends Command
      */
     public function handle()
     {
-        Role::firstOrCreate(['name' => Config::get('constants.roles.user', 'user_role')]);
-        Role::firstOrCreate(['name' => Config::get('constants.roles.admin', 'admin_role')]);
+        Role::firstOrCreate(['name' => Role::getUserRole()]);
+        Role::firstOrCreate(['name' => Role::getAdminRole()]);
 
         $this->info("Roles seeded successfully !");
 
