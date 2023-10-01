@@ -27,7 +27,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
     Route::prefix('admin')->middleware('isAdmin')->group(function() {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+        Route::get('/dashboard', DashboardController::class)->name('admin.dashboard');
         Route::post('/users/activate', [UserController::class, 'activate'])->name('users.activate');
         Route::post('/users/deactivate', [UserController::class, 'deActivate'])->name('users.deactivate');
     });
