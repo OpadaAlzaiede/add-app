@@ -31,34 +31,34 @@
         </style>
     </head>
     <body>
-        @section('navbar')
+        <?php $__env->startSection('navbar'); ?>
             <header>
                 <nav class="navbar">
-                    @if (Route::has('login'))
+                    <?php if(Route::has('login')): ?>
                         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                            @auth
+                            <?php if(auth()->guard()->check()): ?>
                                 <?php if(\Illuminate\Support\Facades\Auth::user()->hasRole(\App\Models\Role::getAdminRole())): ?>
-                                    <a href="{{ url('/admin/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                                    <a href="<?php echo e(url('/admin/dashboard')); ?>" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
                                 <?php else: ?>
-                                    <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                                    <a href="<?php echo e(url('/dashboard')); ?>" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
                                 <?php endif; ?>
-                                    <a href="{{ url('/adds') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Adds</a>
-                                    <a href="{{ url('/logout') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Logout</a>
-                            @else
-                                <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+                                    <a href="<?php echo e(url('/adds')); ?>" class="text-sm text-gray-700 dark:text-gray-500 underline">Adds</a>
+                                    <a href="<?php echo e(url('/logout')); ?>" class="text-sm text-gray-700 dark:text-gray-500 underline">Logout</a>
+                            <?php else: ?>
+                                <a href="<?php echo e(route('login')); ?>" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
-                                @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                                @endif
-                            @endauth
+                                <?php if(Route::has('register')): ?>
+                                    <a href="<?php echo e(route('register')); ?>" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                                <?php endif; ?>
+                            <?php endif; ?>
                         </div>
-                    @endif
+                    <?php endif; ?>
                 </nav>
             </header>
-        @show
+        <?php echo $__env->yieldSection(); ?>
 
         <div class="container">
-            @yield('content')
+            <?php echo $__env->yieldContent('content'); ?>
         </div>
     </body>
 
@@ -66,3 +66,4 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script></html>
+<?php /**PATH C:\Users\obada alzidi\Desktop\Projects\laravel\adds-app\resources\views/layouts/app.blade.php ENDPATH**/ ?>

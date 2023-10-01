@@ -18,6 +18,9 @@ return [
         ],
         'adds' => [
             'add_deletion_success' => 'add deleted successfully'
+        ],
+        'comments' => [
+            'comment_success' => 'comment added successfully'
         ]
     ]
 ];

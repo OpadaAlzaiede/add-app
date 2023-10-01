@@ -5,6 +5,7 @@ use \App\Http\Controllers\Auth\AuthController;
 use \App\Http\Controllers\Admin\DashboardController;
 use \App\Http\Controllers\Admin\UserController;
 use \App\Http\Controllers\AddController;
+use \App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +28,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     Route::get('adds', [AddController::class, 'index'])->name('adds');
+    Route::get('adds/{id}', [AddController::class, 'show']);
+
+    Route::post('comments', CommentController::class);
 
     Route::prefix('admin')->middleware('isAdmin')->group(function() {
         Route::get('/dashboard', DashboardController::class)->name('admin.dashboard');

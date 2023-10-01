@@ -9,7 +9,7 @@
         <p class="text-info">{{ session()->get('add_deletion_success')}}</p>
     @endif
 
-    <div class="d-flex flex-wrap p-2 justify-content-between">
+    <div class="d-flex flex-wrap justify-content-between">
     @foreach($adds as $add)
        <div class="p-2">
            <div class="card" style="width: 18rem;">
@@ -26,7 +26,6 @@
                </div>
                <div class="card-body">
                    <h5 class="card-title">{{$add->title}}</h5>
-                   <p class="card-text">{{$add->description}}</p>
                    <footer class="">
                        <small class="text-muted">
                            <p class="card-text">price: {{$add->price}}$</p>
@@ -44,7 +43,7 @@
                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                            </form>
                        @endif
-                       <a href="#" class="link-primary">view more</a>
+                       <a href="/adds/{{$add->id}}" class="link-primary">view more</a>
                     </div>
                </div>
            </div>
@@ -52,4 +51,7 @@
     @endforeach
     </div>
 
+    <div class="mt-5 ml-2">
+        {{ $adds->links() }}
+    </div>
 @endsection

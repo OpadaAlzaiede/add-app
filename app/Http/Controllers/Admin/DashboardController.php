@@ -10,7 +10,7 @@ class DashboardController extends Controller
 {
     public function __invoke() {
 
-        $users = User::usersOnly()->get();
+        $users = User::usersOnly()->paginate(10);
 
         return view('admin.dashboard', compact('users'));
     }
