@@ -14,7 +14,8 @@ return [
         ],
         'users' => [
             'user_activation_success' => 'user account activated successfully',
-            'user_deactivation_success' => 'user account deactivated successfully'
+            'user_deactivation_success' => 'user account deactivated successfully',
+            'user_activation_needed' => 'please wait until one of ore admins activate your account'
         ],
         'adds' => [
             'add_deletion_success' => 'add deleted successfully',

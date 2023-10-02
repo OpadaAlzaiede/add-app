@@ -27,16 +27,20 @@ Route::post('register', [AuthController::class, 'register']);
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
-    Route::get('adds', [AddController::class, 'index'])->name('adds');
-    Route::get('adds/create', [AddController::class, 'create'])->name('adds.create');
-    Route::post('adds', [AddController::class, 'store'])->name('adds.store');
-    Route::get('adds/{id}', [AddController::class, 'show'])->name('adds.view');
-    Route::put('adds/update', [AddController::class, 'update'])->name('adds.update');
-    Route::post('adds/publish', [AddController::class, 'publish'])->name('adds.publish');
-    Route::post('adds/unpublish', [AddController::class, 'unpublish'])->name('adds.unpublish');
+    Route::middleware('IsActiveAccount')->group(function() {
+        Route::get('dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+        Route::get('adds', [AddController::class, 'index'])->name('adds');
+        Route::get('adds/create', [AddController::class, 'create'])->name('adds.create');
+        Route::post('adds', [AddController::class, 'store'])->name('adds.store');
+        Route::get('adds/{id}', [AddController::class, 'show'])->name('adds.view');
+        Route::put('adds/update', [AddController::class, 'update'])->name('adds.update');
+        Route::post('adds/publish', [AddController::class, 'publish'])->name('adds.publish');
+        Route::post('adds/unpublish', [AddController::class, 'unpublish'])->name('adds.unpublish');
 
-    Route::post('comments', CommentController::class);
+        Route::post('comments', CommentController::class);
+        Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+    });
+
 
     Route::prefix('admin')->middleware('isAdmin')->group(function() {
         Route::get('/dashboard', DashboardController::class)->name('admin.dashboard');
@@ -48,6 +52,5 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/adds/delete', [AdminAddController::class, 'destroy'])->name('adds.delete');
     });
 
-    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 });

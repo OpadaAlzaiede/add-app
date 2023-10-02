@@ -35,7 +35,7 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request) {
 
-        if(!Auth::attempt(['email' => $request->get('email'), 'password' => $request->get('password'), 'is_activated' => 1])) {
+        if(!Auth::attempt(['email' => $request->get('email'), 'password' => $request->get('password')])) {
 
             \session()->flash('login_fail', \config('constants.messages.auth.login_fail'));
 
