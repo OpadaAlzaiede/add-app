@@ -18,6 +18,7 @@ class CreateAddsTable extends Migration
             $table->string('title', 255);
             $table->text('description');
             $table->double('price');
+            $table->string('image_url');
             $table->tinyInteger('is_published')->default('1')->comment('0 => not published, 1 => published');
 
             $table->foreignId('user_id')->constrained('users');

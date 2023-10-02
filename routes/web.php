@@ -28,7 +28,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     Route::get('adds', [AddController::class, 'index'])->name('adds');
+    Route::get('adds/create', [AddController::class, 'create'])->name('adds.create');
+    Route::post('adds', [AddController::class, 'store'])->name('adds.store');
     Route::get('adds/{id}', [AddController::class, 'show']);
+    Route::put('adds/update', [AddController::class, 'update'])->name('adds.update');
+    Route::post('adds/publish', [AddController::class, 'publish'])->name('adds.publish');
+    Route::post('adds/unpublish', [AddController::class, 'unpublish'])->name('adds.unpublish');
 
     Route::post('comments', CommentController::class);
 

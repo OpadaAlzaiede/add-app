@@ -17,7 +17,9 @@ return [
             'user_deactivation_success' => 'user account deactivated successfully'
         ],
         'adds' => [
-            'add_deletion_success' => 'add deleted successfully'
+            'add_deletion_success' => 'add deleted successfully',
+            'add_updated_success' => 'add updated successfully',
+            'add_added_success' => 'add added successfully'
         ],
         'comments' => [
             'comment_success' => 'comment added successfully'

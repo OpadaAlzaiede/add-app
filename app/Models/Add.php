@@ -12,12 +12,7 @@ class Add extends Model
 {
     use HasFactory;
 
-    public static function boot()
-    {
-        parent::boot();
-
-        self::addGlobalScope(new ScopePublishedAdds());
-    }
+    protected $fillable = ['title', 'description', 'price'];
 
     public function user() {
 
@@ -27,6 +22,18 @@ class Add extends Model
     public function comments() {
 
         return $this->hasMany(Comment::class);
+    }
+
+    public function publish() {
+
+        $this->is_published = 1;
+        $this->save();
+    }
+
+    public function unpublish() {
+
+        $this->is_published = 0;
+        $this->save();
     }
 
     public function isPublished() {
@@ -39,4 +46,8 @@ class Add extends Model
         return $query->where('user_id', '!=', Auth::id());
     }
 
+    public function scopePublished(Builder $query) {
+
+        return $query->where('is_published', 1);
+    }
 }
