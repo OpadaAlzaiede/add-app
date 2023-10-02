@@ -1,7 +1,7 @@
 <div>
     <div class="card" style="width: 18rem;">
         <div style="width: 100%; height: 150px; overflow: hidden">
-            <img class="card-img-top" src="{{asset('storage/'.$add->image_url)}}" alt="Card image cap">
+            <img class="card-img-top" src="{{asset($add->image_url)}}" alt="Card image cap">
         </div>
         <div class="d-flex justify-content-between card-header bg-transparent border-success">
             @if(!isAddOwner($add))

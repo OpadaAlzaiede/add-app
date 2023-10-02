@@ -11,9 +11,18 @@ class Add extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'price'];
+    protected $fillable = ['title', 'description', 'price', 'image_url'];
 
     protected static $paginationPerPage = 3;
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::creating(function($add) {
+            $add->user_id = Auth::id();
+        });
+    }
 
     public function user() {
 

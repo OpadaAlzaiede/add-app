@@ -5,11 +5,13 @@ namespace App\Services\Adds;
 
 
 use App\Models\Add;
+use App\Traits\Attachments;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
 class EloquentUserService implements AddQueryService, AddStoreService
 {
+    use Attachments;
+
     public function index()
     {
         return Add::with(['user'])->withCount('comments')->onlyOtherUsersAdds()
@@ -27,30 +29,28 @@ class EloquentUserService implements AddQueryService, AddStoreService
 
     public function store($data)
     {
-        $add = new Add($data);
-        $add->user_id = Auth::id();
         $file = $data['image'];
-        $add->image_url = Storage::disk('public')->putFileAs(
-            'images', $file, time() . $file->getClientOriginalName()
-        );
-        $add->save();
 
-        return $add;
+        try {
+            $data['image_url'] = $this->storeFileInStorage($file);
+        } catch (\Exception $e) {
+            throw $e;
+        }
+
+        return Add::create($data);
     }
 
     public function update($id, $data)
     {
         $add = Add::findOrFail($id);
 
-        $add->update($data);
-
         if(isset($data['image'])) {
+            $this->deleteFileFromStorage($add->image_url);
             $file = $data['image'];
-            $add->image_url = Storage::disk('public')->putFileAs(
-                'images', $file, time() . $file->getClientOriginalName()
-            );
-            $add->save();
+            $data['image_url'] = $this->storeFileInStorage($file);
         }
+
+        $add->update($data);
 
         return $add;
     }

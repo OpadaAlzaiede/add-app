@@ -22,7 +22,7 @@
     </div>
 
     <div class="mb-3" style="width: 300px; height: 200px;">
-        <img src="{{asset('storage/'.$add->image_url)}}" class="img-thumbnail rounded" alt="Responsive image">
+        <img src="{{asset($add->image_url)}}" class="img-thumbnail rounded" alt="Responsive image">
     </div>
 
     <div class="d-flex justify-content-between">
@@ -125,7 +125,7 @@
                     <input type="hidden" name="add_id" value="{{$add->id}}">
                     <div class="form-outline mb-4">
                         <div class="mb-3" style="width: 200px; height: 100px;">
-                            <img src="{{asset('storage/'.$add->image_url)}}" class="img-thumbnail rounded" alt="Responsive image">
+                            <img src="{{asset($add->image_url)}}" class="img-thumbnail rounded" alt="Responsive image">
                         </div>
                     </div>
                     <div class="form-outline mb-4">
