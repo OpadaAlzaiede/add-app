@@ -48,23 +48,21 @@ php artisan key:genetrate
 php artisan migrate:fresh --seed
 ```
 
-7. run 
+7. to seed needed roles to the database run: 
 ```
 php artisan role:seed
 ```
-to seed needed roles to the database.
 
-8. run 
+8. to create admin account run: 
 ```
 php artisan admin:create
 ```
-to create admin account
 
-9. run (optionally)
+
+9. to seed the database with some data run (optionally):
 ```
 php artisan db:seed
 ```
-to seed the database with some data
 
 ** You should create a new database with the name provided to the DB_DATABASE varaiable in you DBMS server **
 
