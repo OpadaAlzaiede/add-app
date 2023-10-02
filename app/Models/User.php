@@ -13,6 +13,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected static $paginationPerPage = 10;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -86,5 +88,10 @@ class User extends Authenticatable
 
             $roleQuery->where('name', Role::getUserRole());
         });
+    }
+
+    public static function getPaginationPerPage() {
+
+        return static::$paginationPerPage;
     }
 }
