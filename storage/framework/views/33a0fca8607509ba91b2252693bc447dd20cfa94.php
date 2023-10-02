@@ -30,7 +30,9 @@
 <?php unset($__componentOriginal513d8cac805fe657823833c7342c768d3276966b); ?>
 <?php endif; ?>
     <?php endif; ?>
-
+    <div class="text-center mb-5">
+        <h5 class="text-highlight">Users</h5>
+    </div>
     <table class="table">
         <thead>
         <tr>

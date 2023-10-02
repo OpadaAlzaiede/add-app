@@ -15,8 +15,7 @@
             {{ session()->get('account_activation')}}
         </div>
     @endif
-    <br>
-    <div class="text-center">
-        Add App
-    </div>
+        <div class="text-center" style=" width: 300px; height: 100px;position: absolute; top: 40%; left: 40%">
+            <h1 class="text-primary">App-Add</h1>
+        </div>
 @endsection

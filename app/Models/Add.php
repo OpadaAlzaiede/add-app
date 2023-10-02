@@ -13,7 +13,7 @@ class Add extends Model
 
     protected $fillable = ['title', 'description', 'price'];
 
-    protected static $paginationPerPage = 10;
+    protected static $paginationPerPage = 3;
 
     public function user() {
 

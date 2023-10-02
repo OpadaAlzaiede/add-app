@@ -10,7 +10,9 @@
     @if(session()->has('user_deactivation_success'))
         <x-alert.alert type="danger" :message="session()->get('user_deactivation_success')"/>
     @endif
-
+    <div class="text-center mb-5">
+        <h5 class="text-highlight">Users</h5>
+    </div>
     <table class="table">
         <thead>
         <tr>

@@ -37,15 +37,15 @@
                     <?php if(Route::has('login')): ?>
                         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                             <?php if(auth()->guard()->check()): ?>
-                                <?php if(\Illuminate\Support\Facades\Auth::user()->hasRole(\App\Models\Role::getAdminRole())): ?>
-                                    <a href="<?php echo e(url('/admin/dashboard')); ?>" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                                <?php if(isAdmin()): ?>
+                                    <a href="<?php echo e(route('admin.dashboard')); ?>" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
                                     <a href="<?php echo e(route('admin.adds')); ?>" class="text-sm text-gray-700 dark:text-gray-500 underline">Adds</a>
 
                                 <?php else: ?>
-                                    <a href="<?php echo e(url('/dashboard')); ?>" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                                    <a href="<?php echo e(route('dashboard')); ?>" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
                                     <a href="<?php echo e(route('adds')); ?>" class="text-sm text-gray-700 dark:text-gray-500 underline">Adds</a>
                                 <?php endif; ?>
-                                    <a href="<?php echo e(url('/logout')); ?>" class="text-sm text-gray-700 dark:text-gray-500 underline">Logout</a>
+                                    <a href="<?php echo e(route('logout')); ?>" class="text-sm text-gray-700 dark:text-gray-500 underline">Logout</a>
                             <?php else: ?>
                                 <a href="<?php echo e(route('login')); ?>" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 

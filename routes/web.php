@@ -38,7 +38,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('adds/unpublish', [AddController::class, 'unpublish'])->name('adds.unpublish');
 
         Route::post('comments', CommentController::class);
-        Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     });
 
 
@@ -52,5 +51,6 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/adds/delete', [AdminAddController::class, 'destroy'])->name('adds.delete');
     });
 
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 });

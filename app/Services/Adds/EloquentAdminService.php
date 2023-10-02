@@ -16,7 +16,6 @@ class EloquentAdminService implements AddQueryService, AddDeletionService
     public function show($id)
     {
         return Add::with('comments')->findOrFail($id);
-
     }
 
     public function destroy($id)

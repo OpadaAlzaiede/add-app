@@ -42,8 +42,18 @@ class CreateAdmin extends Command
     {
         $name = $this->ask('Please provide a valid name');
         $email = $this->ask('Please provide a valid email address');
-        $password = Hash::make($this->ask('Please provide a valid password'));
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $this->error("invalid email...");
+            exit(0);
+        }
 
+        $password = $this->secret('Please provide a valid password');
+        if(strlen($password) < 8) {
+            $this->error("password should be at least 8 characters");
+            exit(0);
+        }
+
+        $password = Hash::make($password);
         $admin = User::create(['name' => $name, 'email' => $email, 'password' => $password]);
         $admin->activate();
 

@@ -6,9 +6,7 @@
 
 @section('content')
     @if(session()->has('add_deletion_success'))
-        <div class="alert alert-danger" role="alert">
-            {{ session()->get('add_deletion_success')}}
-        </div>
+        <x-alert.alert type="danger" :message="session()->get('add_deletion_success')"/>
     @endif
 
     @if(count($adds))
