@@ -3,16 +3,32 @@
 
 <?php $__env->startSection('content'); ?>
     <?php if(session()->has('user_activation_success')): ?>
-        <div class="alert alert-primary" role="alert">
-            <?php echo e(session()->get('user_activation_success')); ?>
-
-        </div>
+        <?php if (isset($component)) { $__componentOriginal513d8cac805fe657823833c7342c768d3276966b = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Alert\Alert::class, ['type' => 'primary','message' => session()->get('user_activation_success')]); ?>
+<?php $component->withName('alert.alert'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal513d8cac805fe657823833c7342c768d3276966b)): ?>
+<?php $component = $__componentOriginal513d8cac805fe657823833c7342c768d3276966b; ?>
+<?php unset($__componentOriginal513d8cac805fe657823833c7342c768d3276966b); ?>
+<?php endif; ?>
     <?php endif; ?>
     <?php if(session()->has('user_deactivation_success')): ?>
-        <div class="alert alert-danger" role="alert">
-            <?php echo e(session()->get('user_deactivation_success')); ?>
-
-        </div>
+        <?php if (isset($component)) { $__componentOriginal513d8cac805fe657823833c7342c768d3276966b = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Alert\Alert::class, ['type' => 'danger','message' => session()->get('user_deactivation_success')]); ?>
+<?php $component->withName('alert.alert'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal513d8cac805fe657823833c7342c768d3276966b)): ?>
+<?php $component = $__componentOriginal513d8cac805fe657823833c7342c768d3276966b; ?>
+<?php unset($__componentOriginal513d8cac805fe657823833c7342c768d3276966b); ?>
+<?php endif; ?>
     <?php endif; ?>
 
     <table class="table">

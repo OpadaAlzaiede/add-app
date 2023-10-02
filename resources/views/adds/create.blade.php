@@ -11,9 +11,7 @@
 
             <div class="form-outline mb-4">
                 @if($errors->has('title'))
-                    <div class="alert alert-danger" role="alert">
-                        {{ $errors->first('title') }}
-                    </div>
+                    <x-alert.alert type="danger" :message="$errors->first('title')"/>
                 @endif
 
                 <label class="form-label" for="title">Title</label>
@@ -22,9 +20,7 @@
 
             <div class="form-outline mb-4">
                 @if($errors->has('description'))
-                    <div class="alert alert-danger" role="alert">
-                        {{ $errors->first('description') }}
-                    </div>
+                    <x-alert.alert type="danger" :message="$errors->first('description')"/>
                 @endif
                 <label class="form-label" for="email">Description</label>
                     <textarea type="description" id="description" name="description" class="form-control" required>
@@ -34,9 +30,7 @@
 
             <div class="form-outline mb-4">
                 @if($errors->has('price'))
-                    <div class="alert alert-danger" role="alert">
-                        {{ $errors->first('price') }}
-                    </div>
+                    <x-alert.alert type="danger" :message="$errors->first('price')"/>
                 @endif
                 <label class="form-label" for="price">Price</label>
                 <input type="price" id="price" name="price" class="form-control" required/>
@@ -44,9 +38,7 @@
 
             <div class="form-outline mb-4">
                 @if($errors->has('image'))
-                    <div class="alert alert-danger" role="alert">
-                        {{ $errors->first('image') }}
-                    </div>
+                    <x-alert.alert type="danger" :message="$errors->first('image')"/>
                 @endif
                 <label class="form-label" for="image">Image</label>
                 <input type="file" id="image" name="image" class="form-control" required/>
