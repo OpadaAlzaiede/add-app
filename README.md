@@ -23,7 +23,7 @@ You can register new account, login with existing one and logout from logged acc
 
 1. Clone the repository:
 ```sh
-https://github.com/OpadaAlzaiede/imagine_book_store_api
+https://github.com/OpadaAlzaiede/add-app.git
 ```
 
 2. Install all dependencies:
@@ -43,14 +43,14 @@ php artisan key:genetrate
 
 5. Setup database enviroment variables in .env file:
 
-6. Run migration files and seed the database:
+6. Run migration files:
 ```
 php artisan migrate:fresh --seed
 ```
 
 7. run 
 ```
-php artisan key:genetrate
+php artisan role:seed
 ```
 to seed needed roles to the database.
 
