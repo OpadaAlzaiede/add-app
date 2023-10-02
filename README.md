@@ -45,7 +45,7 @@ php artisan key:genetrate
 
 6. Run migration files:
 ```
-php artisan migrate:fresh --seed
+php artisan migrate:fresh
 ```
 
 7. to seed needed roles to the database run: 
