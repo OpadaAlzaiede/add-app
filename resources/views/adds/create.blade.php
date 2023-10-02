@@ -40,7 +40,7 @@
                     <x-alert.alert type="danger" :message="$errors->first('price')"/>
                 @endif
                 <label class="form-label" for="price">Price</label>
-                <input type="price" id="price" name="price" class="form-control" required/>
+                <input value="{{old('price')}}" type="number" id="price" name="price" class="form-control" required/>
             </div>
 
             <div class="form-outline mb-4">
