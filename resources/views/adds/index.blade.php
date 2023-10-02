@@ -6,7 +6,9 @@
 
 @section('content')
     @if(session()->has('add_deletion_success'))
-        <p class="text-info">{{ session()->get('add_deletion_success')}}</p>
+        <div class="alert alert-danger" role="alert">
+            {{ session()->get('add_deletion_success')}}
+        </div>
     @endif
 
     @if(count($adds))

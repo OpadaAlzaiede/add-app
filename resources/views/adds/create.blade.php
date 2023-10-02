@@ -11,15 +11,20 @@
 
             <div class="form-outline mb-4">
                 @if($errors->has('title'))
-                    <div class="text-danger">{{ $errors->first('title') }}</div>
+                    <div class="alert alert-danger" role="alert">
+                        {{ $errors->first('title') }}
+                    </div>
                 @endif
+
                 <label class="form-label" for="title">Title</label>
                 <input value= "{{old('title')}}" type="title" id="title" name="title" class="form-control" required/>
             </div>
 
             <div class="form-outline mb-4">
                 @if($errors->has('description'))
-                    <div class="text-danger">{{ $errors->first('description') }}</div>
+                    <div class="alert alert-danger" role="alert">
+                        {{ $errors->first('description') }}
+                    </div>
                 @endif
                 <label class="form-label" for="email">Description</label>
                     <textarea type="description" id="description" name="description" class="form-control" required>
@@ -29,7 +34,9 @@
 
             <div class="form-outline mb-4">
                 @if($errors->has('price'))
-                    <div class="text-danger">{{ $errors->first('price') }}</div>
+                    <div class="alert alert-danger" role="alert">
+                        {{ $errors->first('price') }}
+                    </div>
                 @endif
                 <label class="form-label" for="price">Price</label>
                 <input type="price" id="price" name="price" class="form-control" required/>
@@ -37,7 +44,9 @@
 
             <div class="form-outline mb-4">
                 @if($errors->has('image'))
-                    <div class="text-danger">{{ $errors->first('image') }}</div>
+                    <div class="alert alert-danger" role="alert">
+                        {{ $errors->first('image') }}
+                    </div>
                 @endif
                 <label class="form-label" for="image">Image</label>
                 <input type="file" id="image" name="image" class="form-control" required/>

@@ -3,10 +3,16 @@
 
 <?php $__env->startSection('content'); ?>
     <?php if(session()->has('user_activation_success')): ?>
-        <p class="text-info"><?php echo e(session()->get('user_activation_success')); ?></p>
+        <div class="alert alert-primary" role="alert">
+            <?php echo e(session()->get('user_activation_success')); ?>
+
+        </div>
     <?php endif; ?>
     <?php if(session()->has('user_deactivation_success')): ?>
-        <p class="text-danger"><?php echo e(session()->get('user_deactivation_success')); ?></p>
+        <div class="alert alert-danger" role="alert">
+            <?php echo e(session()->get('user_deactivation_success')); ?>
+
+        </div>
     <?php endif; ?>
 
     <table class="table">

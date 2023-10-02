@@ -5,10 +5,14 @@
 
 @section('content')
     @if(session()->has('user_activation_success'))
-        <p class="text-info">{{ session()->get('user_activation_success')}}</p>
+        <div class="alert alert-primary" role="alert">
+            {{ session()->get('user_activation_success')}}
+        </div>
     @endif
     @if(session()->has('user_deactivation_success'))
-        <p class="text-danger">{{ session()->get('user_deactivation_success')}}</p>
+        <div class="alert alert-danger" role="alert">
+            {{ session()->get('user_deactivation_success')}}
+        </div>
     @endif
 
     <table class="table">

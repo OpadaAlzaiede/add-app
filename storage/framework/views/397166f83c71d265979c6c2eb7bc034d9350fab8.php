@@ -3,7 +3,10 @@
 
 <?php $__env->startSection('content'); ?>
     <?php if(session()->has('add_deletion_success')): ?>
-        <p class="text-info"><?php echo e(session()->get('add_deletion_success')); ?></p>
+        <div class="alert alert-danger" role="alert">
+            <?php echo e(session()->get('add_deletion_success')); ?>
+
+        </div>
     <?php endif; ?>
 
     <?php if(count($adds)): ?>

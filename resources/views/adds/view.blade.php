@@ -7,10 +7,14 @@
 @section('content')
     <div class="text-center">
         @if(session()->has('comment_success'))
-            <p class="text-primary">{{ session()->get('comment_success')}}</p>
+            <div class="alert alert-primary" role="alert">
+                {{ session()->get('comment_success')}}
+            </div>
         @endif
         @if($errors->has('content'))
-            <div class="text-danger">{{ $errors->first('content') }}</div>
+            <div class="alert alert-danger" role="alert">
+                {{ $errors->first('content') }}
+            </div>
         @endif
     </div>
 

@@ -37,6 +37,6 @@ class AdminAddController extends Controller
 
         $this->addDeletionService->destroy($request->get('add_id'));
 
-        return redirect()->back()->with('add_deletion_success', config('constants.messaged.adds.add_deletion_success'));
+        return redirect()->back()->with('add_deletion_success', config('constants.messages.adds.add_deletion_success'));
     }
 }

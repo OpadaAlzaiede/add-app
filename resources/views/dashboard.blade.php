@@ -5,7 +5,9 @@
 
 @section('content')
     @if(session()->has('add_added_success'))
-        <p class="text-primary">{{ session()->get('add_added_success')}}</p>
+        <div class="alert alert-primary" role="alert">
+            {{ session()->get('add_added_success')}}
+        </div>
     @endif
 
     <div class="text-center">

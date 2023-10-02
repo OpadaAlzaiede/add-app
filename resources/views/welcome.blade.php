@@ -6,9 +6,11 @@
 @section('content')
 
     @if(session()->has('register_success'))
-        <p class="text-info">{{ session()->get('register_success')}}</p>
+        <div class="alert alert-primary" role="alert">
+            {{ session()->get('register_success')}}
+        </div>
     @endif
-
+    <br>
     <div class="text-center">
         Add App
     </div>
