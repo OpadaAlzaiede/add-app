@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\AddServiceProvider::class,
         App\Providers\UserServiceProvider::class,
+        App\Providers\CommentServiceProvider::class,
     ],
 
     /*

@@ -3,19 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Comments\StoreRequest;
-use App\Models\Comment;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Services\Comments\CommentService;
 
 class CommentController extends Controller
 {
+    protected $commentService;
+
+    public function __construct(CommentService $commentService)
+    {
+        $this->commentService = $commentService;
+    }
 
     public function __invoke(StoreRequest $request)
     {
-        $comment = new Comment($request->validated());
-        $comment->user_id = Auth::id();
-        $comment->add_id = $request->get('add_id');
-        $comment->save();
+        $data = array_merge($request->validated(), ['add_id' => $request->get('add_id')]);
+
+        $this->commentService->store($data);
 
         return redirect()->back()->with('comment_success', config('constants.messages.comments.comment_success'));
     }

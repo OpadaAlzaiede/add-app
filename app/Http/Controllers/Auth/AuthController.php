@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\Role;
 use App\Models\User;
+use App\Services\Users\UserStoreService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -15,6 +16,12 @@ use MongoDB\Driver\Session;
 
 class AuthController extends Controller
 {
+    protected $userService;
+
+    public function __construct(UserStoreService $userService)
+    {
+        $this->userService = $userService;
+    }
 
     public function getLogin() {
 
@@ -47,11 +54,7 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request) {
 
-        $user = new User($request->validated());
-        $user->password = Hash::make($user->password);
-        $user->save();
-
-        $user->assignRole(Role::getUserRole());
+        $this->userService->store($request->validated());
 
         \session()->flash('register_success', \config('constants.messages.auth.register_success'));
 
