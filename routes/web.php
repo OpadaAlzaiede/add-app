@@ -6,6 +6,7 @@ use \App\Http\Controllers\Admin\DashboardController;
 use \App\Http\Controllers\Admin\UserController;
 use \App\Http\Controllers\AddController;
 use \App\Http\Controllers\CommentController;
+use \App\Http\Controllers\Admin\AdminAddController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,7 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('adds', [AddController::class, 'index'])->name('adds');
     Route::get('adds/create', [AddController::class, 'create'])->name('adds.create');
     Route::post('adds', [AddController::class, 'store'])->name('adds.store');
-    Route::get('adds/{id}', [AddController::class, 'show']);
+    Route::get('adds/{id}', [AddController::class, 'show'])->name('adds.view');
     Route::put('adds/update', [AddController::class, 'update'])->name('adds.update');
     Route::post('adds/publish', [AddController::class, 'publish'])->name('adds.publish');
     Route::post('adds/unpublish', [AddController::class, 'unpublish'])->name('adds.unpublish');
@@ -42,7 +43,9 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/users/activate', [UserController::class, 'activate'])->name('users.activate');
         Route::post('/users/deactivate', [UserController::class, 'deActivate'])->name('users.deactivate');
 
-        Route::delete('/adds/delete', \App\Http\Controllers\Admin\AddController::class)->name('adds.delete');
+        Route::get('adds', [AdminAddController::class, 'index'])->name('admin.adds');
+        Route::get('adds/{id}', [AdminAddController::class, 'show'])->name('admin.adds.view');
+        Route::delete('/adds/delete', [AdminAddController::class, 'destroy'])->name('adds.delete');
     });
 
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');

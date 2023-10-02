@@ -45,7 +45,11 @@
                                             <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                         </form>
                                     @endif
-                                    <a href="/adds/{{$add->id}}" class="link-primary">view more</a>
+                                    @if(auth()->user()->hasRole(\App\Models\Role::getAdminRole()))
+                                            <a href="{{route('admin.adds.view', $add->id)}}" class="link-primary text-primary">view more</a>
+                                    @else
+                                        <a href="{{route('adds.view', $add->id)}}" class="link-primary text-primary">view more</a>
+                                    @endif
                                 </div>
                             </div>
                         </div>

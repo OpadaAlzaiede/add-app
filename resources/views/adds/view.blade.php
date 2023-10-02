@@ -138,7 +138,7 @@
                             <div class="text-danger">{{ $errors->first('image') }}</div>
                         @endif
                         <label class="form-label" for="image">Image</label>
-                        <input type="file" id="image" name="image" class="form-control" required/>
+                        <input type="file" id="image" name="image" class="form-control"/>
                     </div>
 
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

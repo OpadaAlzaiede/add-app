@@ -4,30 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Add\StoreRequest;
 use App\Http\Requests\Add\UpdateRequest;
-use App\Models\Add;
-use App\Models\Role;
+use App\Services\Adds\AddQueryService;
+use App\Services\Adds\AddStoreService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
 class AddController extends Controller
 {
+    protected $addQueryService;
+    protected $addStoreService;
+
+    public function __construct(AddQueryService $queryService, AddStoreService $storeService)
+    {
+        $this->addQueryService = $queryService;
+        $this->addStoreService = $storeService;
+    }
+
     public function index() {
 
-        $adds = Add::with(['user'])->withCount('comments')->onlyOtherUsersAdds();
-
-        if(!Auth::user()->hasRole(Role::getAdminRole())) $adds = $adds->published();
-
-        $adds = $adds->paginate(3);
+        $adds = $this->addQueryService->index();
 
         return view('adds.index', compact('adds'));
     }
 
     public function show($id)
     {
-        $add = Add::with('comments')->findOrFail($id);
-
-        if ($add->user_id !== Auth::id()) $add = $add->published()->findOrFail($id);
+        $add = $this->addQueryService->show($id);
 
         return view('adds.view', compact('add'));
     }
@@ -39,30 +40,14 @@ class AddController extends Controller
 
     public function store(StoreRequest $request) {
 
-        $add = new Add($request->validated());
-        $add->user_id = Auth::id();
-        $file = $request->file('image');
-        $add->image_url = Storage::disk('public')->putFileAs(
-            'images', $file, time() . $file->getClientOriginalName()
-        );
-        $add->save();
+        $this->addStoreService->store($request->validated());
 
         return redirect('/dashboard')->with('add_added_success', config('config.messages.adds.add_added_success'));
     }
 
     public function update(UpdateRequest $request) {
 
-        $add = Add::findOrFail($request->get('add_id'));
-
-        $add->update($request->validated());
-
-        if($request->hasFile('image')) {
-            $file = $request->file('image');
-            $add->image_url = Storage::disk('public')->putFileAs(
-                'images', $file, time() . $file->getClientOriginalName()
-            );
-            $add->save();
-        }
+        $this->addStoreService->update($request->get('add_id'), $request->validated());
 
         return redirect()->back()->with('add_updated_success', config('config.messages.adds.add_updated_success'));
 
@@ -70,18 +55,14 @@ class AddController extends Controller
 
     public function publish(Request $request) {
 
-        $add = Add::findOrFail($request->get('add_id'));
-
-        $add->publish();
+        $this->addStoreService->publish($request->get('add_id'));
 
         return redirect()->back()->with('add_published_success', config('config.messages.adds.add_published_success'));
     }
 
     public function unpublish(Request $request) {
 
-        $add = Add::findOrFail($request->get('add_id'));
-
-        $add->unpublish();
+        $this->addStoreService->unpublish($request->get('add_id'));
 
         return redirect()->back()->with('add_unpublished_success', config('config.messages.adds.add_unpublished_success'));
     }

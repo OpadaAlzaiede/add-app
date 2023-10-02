@@ -39,10 +39,12 @@
                             @auth
                                 <?php if(\Illuminate\Support\Facades\Auth::user()->hasRole(\App\Models\Role::getAdminRole())): ?>
                                     <a href="{{ url('/admin/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                                    <a href="{{ route('admin.adds')}}" class="text-sm text-gray-700 dark:text-gray-500 underline">Adds</a>
+
                                 <?php else: ?>
                                     <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                                    <a href="{{route('adds')}}" class="text-sm text-gray-700 dark:text-gray-500 underline">Adds</a>
                                 <?php endif; ?>
-                                    <a href="{{ url('/adds') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Adds</a>
                                     <a href="{{ url('/logout') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Logout</a>
                             @else
                                 <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>

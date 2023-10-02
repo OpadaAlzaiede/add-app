@@ -14,6 +14,8 @@ class Add extends Model
 
     protected $fillable = ['title', 'description', 'price'];
 
+    protected static $paginationPerPage = 10;
+
     public function user() {
 
         return $this->belongsTo(User::class);
@@ -49,5 +51,10 @@ class Add extends Model
     public function scopePublished(Builder $query) {
 
         return $query->where('is_published', 1);
+    }
+
+    public static function getPaginationPerPage() {
+
+        return static::$paginationPerPage;
     }
 }

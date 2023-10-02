@@ -12,7 +12,7 @@
                 <?php $__currentLoopData = $adds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $add): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="p-2">
                         <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="..." alt="Card image cap">
+                            <img class="card-img-top" src="<?php echo e(asset('storage/'.$add->image_url)); ?>" alt="Card image cap">
                             <div class="d-flex justify-content-between card-header bg-transparent border-success">
                                 <small class="text-muted">
                                     <p class="card-text">by: <?php echo e($add->user->name); ?></p>
@@ -42,7 +42,11 @@
                                             <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                         </form>
                                     <?php endif; ?>
-                                    <a href="/adds/<?php echo e($add->id); ?>" class="link-primary">view more</a>
+                                    <?php if(auth()->user()->hasRole(\App\Models\Role::getAdminRole())): ?>
+                                            <a href="<?php echo e(route('admin.adds.view', $add->id)); ?>" class="link-primary text-primary">view more</a>
+                                    <?php else: ?>
+                                        <a href="<?php echo e(route('adds.view', $add->id)); ?>" class="link-primary text-primary">view more</a>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>

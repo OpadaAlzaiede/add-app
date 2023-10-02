@@ -39,10 +39,12 @@
                             <?php if(auth()->guard()->check()): ?>
                                 <?php if(\Illuminate\Support\Facades\Auth::user()->hasRole(\App\Models\Role::getAdminRole())): ?>
                                     <a href="<?php echo e(url('/admin/dashboard')); ?>" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                                    <a href="<?php echo e(route('admin.adds')); ?>" class="text-sm text-gray-700 dark:text-gray-500 underline">Adds</a>
+
                                 <?php else: ?>
                                     <a href="<?php echo e(url('/dashboard')); ?>" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                                    <a href="<?php echo e(route('adds')); ?>" class="text-sm text-gray-700 dark:text-gray-500 underline">Adds</a>
                                 <?php endif; ?>
-                                    <a href="<?php echo e(url('/adds')); ?>" class="text-sm text-gray-700 dark:text-gray-500 underline">Adds</a>
                                     <a href="<?php echo e(url('/logout')); ?>" class="text-sm text-gray-700 dark:text-gray-500 underline">Logout</a>
                             <?php else: ?>
                                 <a href="<?php echo e(route('login')); ?>" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>

@@ -27,6 +27,7 @@ class UpdateRequest extends FormRequest
             'title' => ['string', 'max:100'],
             'description' => ['string'],
             'price' => ['numeric', 'min:0'],
+            'image' => ['file', 'mimes:jpg,jpeg,img,png', 'max:12000']
         ];
     }
 }
