@@ -6,6 +6,7 @@ use App\Models\Add;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Auth;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
         foreach ($users as $user) {
             $user->assignRole(Role::getUserRole());
 
+            Auth::login($user);
             Add::factory(10)->create(['user_id' => $user->id]);
         }
     }
