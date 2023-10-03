@@ -41,7 +41,7 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-5. Setup database enviroment variables in .env file:
+5. Setup database environment variables in .env file:
 
 6. Run migration files:
 ```
@@ -62,6 +62,11 @@ php artisan admin:create
 9. to seed the database with some data run (optionally):
 ```
 php artisan db:seed
+```
+
+9. to create a link to your storage run:
+```
+php artisan storage:link
 ```
 
 ** You should create a new database with the name provided to the DB_DATABASE varaiable in you DBMS server **
