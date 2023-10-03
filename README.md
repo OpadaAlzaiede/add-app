@@ -38,7 +38,7 @@ cp .env.example .env
 
 4. Generate the application key:
 ```
-php artisan key:genetrate
+php artisan key:generate
 ```
 
 5. Setup database enviroment variables in .env file:
